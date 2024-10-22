@@ -51,8 +51,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Download this project
 ```
-$ git clone https://github.com/MelissaData/Property-Python3
-$ cd Property-Python3
+git clone https://github.com/MelissaData/Property-Python3
+cd Property-Python3
 ```
 
 ## Windows
@@ -93,15 +93,15 @@ There are two modes:
 
 	The script will prompt the user for input(s), then use the provided input(s) to call the Cloud API. For example:
 	```
-	$ .\PropertyPython3.ps1
+	.\PropertyPython3.ps1
 	```
 
 - Command Line 
 
 	You can pass FIPS code, APN code, and license string into `-fips`, `-apn`, and `-license` parameters respectively to test the Cloud API. For example:
 	```
-    $ .\PropertyPython3.ps1 -fips "06059" -apn "80505208"
-    $ .\PropertyPython3.ps1 -fips "06059" -apn "80505208" -license "<your_license_string>"
+    .\PropertyPython3.ps1 -fips "06059" -apn "80505208"
+    .\PropertyPython3.ps1 -fips "06059" -apn "80505208" -license "<your_license_string>"
     ```
 
 This is the expected output from a successful setup for command line mode:
@@ -153,15 +153,15 @@ There are two modes:
 
 	The script will prompt the user for input(s), then use the provided input(s) to call the Cloud API. For example:
 	```
-	$ ./PropertyPython3.sh
+	./PropertyPython3.sh
 	```
 
 - Command Line 
 
 	You can pass a FIPS code, APN code, and license string into `--fips`, `--apn`, and `--license` parameters respectively to test the Cloud API. For example:
 	```
-    $ ./PropertyPython3.sh --fips "06059" --apn "80505208"
-    $ ./PropertyPython3.sh --fips "06059" --apn "80505208" --license "<your_license_string>"
+    ./PropertyPython3.sh --fips "06059" --apn "80505208"
+    ./PropertyPython3.sh --fips "06059" --apn "80505208" --license "<your_license_string>"
     ```
 
 This is the expected output from a successful setup for command line mode:
