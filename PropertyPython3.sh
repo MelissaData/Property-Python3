@@ -1,7 +1,28 @@
 #!/bin/bash
 
-# Name:    PropertyCloudAPI
-# Purpose: Execute the PropertyCloudAPI program
+# Runs the Melissa Property Cloud API Python 3 sample.
+#
+# This script runs PropertyPython3.py with python3, passing along the license
+# and (if supplied) the lookup fields.
+#
+# Overall flow:
+#   1. Parse the command-line options below.
+#   2. Resolve the license (--license, then a prompt, then the MD_LICENSE environment variable).
+#   3. Run PropertyPython3.py: with the lookup fields if any was supplied,
+#      otherwise with only the license (the Python program prompts for each field).
+#
+# Options (each takes a value):
+#   --fips      County FIPS code to test.
+#   --apn       Assessor's Parcel Number (APN) to test.
+#   --license   License string. If omitted, the script prompts for it; if the prompt
+#               is left blank, it falls back to MD_LICENSE. Running without --license
+#               always prompts, even when MD_LICENSE is set.
+#
+# PropertyPython3.py is found relative to the current directory, so run the script from its own folder.
+#
+# Examples:
+#   ./PropertyPython3.sh --license "your-license"
+#   ./PropertyPython3.sh --fips "06059" --apn "80505208" --license "your-license"
 
 ######################### Constants ##########################
 
@@ -14,6 +35,8 @@ fips=""
 apn=""
 license=""
 
+# Read each --flag and its value. A flag with no value, or whose value starts with
+# "-", is an error. Unrecognized options are ignored.
 while [ $# -gt 0 ] ; do
   case $1 in
     --fips) 
@@ -73,9 +96,12 @@ then
 fi
 
 # Run project
+# Neither --fips nor --apn supplied -> run with only the license (the program prompts);
+# otherwise pass both through. An unsupplied field arrives as an empty string and the
+# program prompts for it.
 if [ -z "$fips" ] && [ -z "$apn" ];
 then
-    python3 PropertyPython3.py --license $license  
+    python3 PropertyPython3.py --license "$license"
 else
-    python3 PropertyPython3.py --license $license --fips $fips --apn $apn
+    python3 PropertyPython3.py --license "$license" --fips "$fips" --apn "$apn"
 fi
